@@ -89,27 +89,37 @@ export default {
     async register() {
       if (!this.item.name) {
         alert("이름을 입력하세요.")
+        return;
       } else if (!this.item.user_id){
         alert("아이디를 입력해주세요.")
+        return;
       } else if (!/^[a-zA-Z0-9]{8,}$/.test(this.item.user_id)){
         alert("아이디는 영문 or 숫자 8자 이상으로 입력해 주세요.")
+        return;
       } else if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
               this.item.email)) {
         alert("이메일 주소를 입력해 주세요.")
+        return;
       } else if (!/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/.test(
           this.item.phone)) {
         alert("핸드폰 번호를 입력해 주세요.")
+        return;
       } else if (!/^[a-zA-Z0-9#?!@$ %^&*-]{8,}$/.test(this.item.password)){
         alert("비밀번호는 영문 or 숫자 or 특수문자 8자 이상으로 입력해 주세요.")
+        return;
       } else if (this.item.password != this.item.passwordconfirm){
         alert("비밀번호가 다릅니다.")
+        return;
       }
 
-      const res = await axios.post(URL_API_REGISTER, { ...this.item })
+      const res = await axios.post(URL_API_REGISTER, {
+        ...this.item
+      }).then(res => {
+        alert("회원가입이 되었습니다.")
+      }).catch(e => {
+        alert("일치하는 회원이 있습니다.")
+      })
       console.log(res)
-
-      this.$router.push('/')
-
 
     },
 

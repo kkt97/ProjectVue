@@ -21,7 +21,7 @@
             </div>
             <div class="row mb-0">
               <div class="col-md-8 offset-md-4">
-                <button @click="Login" class="btn btn-primary">
+                <button @click="login" type="submit" class="btn btn-primary">
                   로그인
                 </button>
                 <a class="btn btn-link" href="/id.request">
@@ -36,7 +36,6 @@
                 </a>
               </div>
             </div>
-            <router-view :key="$route.fullPath"></router-view>
           </div>
         </div>
       </div>
@@ -46,46 +45,44 @@
 </template>
 <script>
 import axios from "axios";
+import Dashboard from "../../components/Dashboard";
 
-const URL_API_LOGIN = 'http://localhost:8000/api/Login'
+const URL_API_LOGIN = 'http://localhost:8000/api/login'
 
 export default {
-//   name: "Login",
-//   data() {
-//     return {
-//       item: {
-//         user_id: '',
-//         password: '',
-//       },
-//       items: [],
-//     }
-//   },
-//   methods: {
-//     async Login(e) {
-//       this.errors = [];
-//       if (!this.email) {
-//         this.errors.push('Email required.');
-//       }
-//       if (!this.password) {
-//         this.errors.push('Password required.');
-//       }
-//       else
-//       {
-//         var formContents = jQuery("#createAdministrator").serialize();
-//
-//
-//       axios.post('/URL_API_LOGIN', formContents).then(function(response, status, request) {
-//         alert(response.data.user);
-//
-//
-//       }, function() {
-//         console.log('failed');
-//       });
-//     }
-//
-//       e.preventDefault();
-//     }
-//   }
+  name: "Login",
+  data() {
+    return {
+      item: {
+        user_id: '',
+        password: '',
+      },
+      errors: [],
+    }
+  },
+  methods: {
+    async login() {
+      const res = axios.post(URL_API_LOGIN, {
+        ...this.item
+      }).then(() =>{
+        //TODO
+
+        this.$router.push({ name: "Dashboard"});
+      }).catch((error) =>{
+        this.errors = error.response.data.errors;
+      })
+
+      console.log(res)
+    }
+  },
+  watch: {
+    'item': {
+      deep: true,
+      handler() {
+        console.log('watch', this.item)
+      },
+    },
+  },
 }
 </script>
 
