@@ -8,9 +8,8 @@ import PassRequest from '../views/Auth/PassRequest'
 import foo from "../views/foo";
 import Dashboard from "../components/Dashboard";
 import BlogListV from "../views/Blog/BlogListV";
-import axios from 'axios';
-
-const URL_API_ATENTICATED = 'http://localhost:8000/api/athenticated';
+import BlogDetailV from "../views/Blog/BlogDetailV";
+import BlogCreateV from "../views/Blog/BlogCreateV";
 
 Vue.use(VueRouter)
 
@@ -55,17 +54,29 @@ const routes = [
       component: BlogListV
     },
     {
+        path: "/blog/:id",
+        name: "BlogDetailV",
+        component: BlogDetailV,
+    },
+    {
+        path: "/createblog",
+        name: "BlogCreateV",
+        component: BlogCreateV,
+    },
+    {
         path: '/dashboard',
         name: 'Dashboard',
         component: Dashboard,
-        beforeEnter: (to, form, next) =>{
-            axios.get(URL_API_ATENTICATED).then(()=>{
-                next()
-            }).catch(()=>{
-                return next({ name: 'Login'})
-            })
-        }
+        // beforeEnter: (to, form, next) =>{
+        //     axios.get(URL_API_ATENTICATED).then(()=>{
+        //         next()
+        //     }).catch(()=>{
+        //         return next({ name: 'Login'})
+        //     })
+        // }
     },
+
+
 ];
 
 const router = new VueRouter({

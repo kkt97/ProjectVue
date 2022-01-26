@@ -104,8 +104,8 @@ export default {
           this.item.phone)) {
         alert("핸드폰 번호를 입력해 주세요.")
         return;
-      } else if (!/^[a-zA-Z0-9#?!@$ %^&*-]{8,}$/.test(this.item.password)){
-        alert("비밀번호는 영문 or 숫자 or 특수문자 8자 이상으로 입력해 주세요.")
+      } else if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/.test(this.item.password)){
+        alert("비밀번호는 영문 or 숫자 or 특수문자 조합으로 8자 이상으로 입력해 주세요.")
         return;
       } else if (this.item.password != this.item.passwordconfirm){
         alert("비밀번호가 다릅니다.")

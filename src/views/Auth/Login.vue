@@ -21,7 +21,7 @@
             </div>
             <div class="row mb-0">
               <div class="col-md-8 offset-md-4">
-                <button @click="login" type="submit" class="btn btn-primary">
+                <button @click="login" class="btn btn-primary">
                   로그인
                 </button>
                 <a class="btn btn-link" href="/id.request">
@@ -47,7 +47,7 @@
 import axios from "axios";
 import Dashboard from "../../components/Dashboard";
 
-const URL_API_LOGIN = 'http://localhost:8000/api/login'
+const URL_API_LOGIN = 'http://localhost:8000/api/login/login'
 
 export default {
   name: "Login",
@@ -68,12 +68,12 @@ export default {
         //TODO
 
         this.$router.push({ name: "Dashboard"});
-      }).catch((error) =>{
-        this.errors = error.response.data.errors;
+      // }).catch((error) =>{
+      //   this.errors = error.response.data.errors;
       })
 
       console.log(res)
-    }
+    },
   },
   watch: {
     'item': {

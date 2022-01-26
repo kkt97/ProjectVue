@@ -5,15 +5,15 @@
         <b-navbar-brand href="/">NavBar</b-navbar-brand>
         <ul>
           <li>
-            <b-nav-item class="marker" href="login">로그인
+            <b-nav-item class="marker" href="/login">로그인
             </b-nav-item>
           </li>
           <li>
-            <b-nav-item class="marker" href="register">회원가입
+            <b-nav-item class="marker" href="/register">회원가입
             </b-nav-item>
           </li>
           <li>
-            <b-nav-item  class="marker" href="blog">게시판
+            <b-nav-item  class="marker" href="/blog">게시판
             </b-nav-item>
           </li>
         </ul>
